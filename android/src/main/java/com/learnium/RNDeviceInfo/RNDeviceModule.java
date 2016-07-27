@@ -1,6 +1,7 @@
 package com.learnium.RNDeviceInfo;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -66,6 +67,15 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
       PackageInfo info = packageManager.getPackageInfo(packageName, 0);
       constants.put("appVersion", info.versionName);
       constants.put("buildNumber", info.versionCode);
+    } catch (PackageManager.NameNotFoundException e) {
+      e.printStackTrace();
+    }
+
+    try {
+      ApplicationInfo appInfo = packageManager.getApplicationInfo(packageName, 128);
+      for(String key:appInfo.metaData.keySet()){
+        constants.put("meta_"+key, appInfo.metaData.get(key));
+      }
     } catch (PackageManager.NameNotFoundException e) {
       e.printStackTrace();
     }

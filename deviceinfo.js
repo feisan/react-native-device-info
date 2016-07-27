@@ -50,4 +50,7 @@ module.exports = {
   getDeviceCountry: function() {
     return RNDeviceInfo.deviceCountry;
   },
+  get:function(name){
+    return RNDeviceInfo["meta_"+name];
+  }
 };

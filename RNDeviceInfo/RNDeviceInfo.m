@@ -153,7 +153,7 @@ RCT_EXPORT_MODULE()
 
     NSUUID *identifierForVendor = [currentDevice identifierForVendor];
     NSString *uniqueId = [identifierForVendor UUIDString];
-
+    
     return @{
              @"systemName": currentDevice.systemName,
              @"systemVersion": currentDevice.systemVersion,
@@ -169,6 +169,16 @@ RCT_EXPORT_MODULE()
              @"systemManufacturer": @"Apple",
              @"userAgent": self.userAgent,
              @"timezone": self.timezone,
+             
+             @"meta_UMENG_CHANNEL": [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UMENG_CHANNEL"],
+             @"meta_PackageTagId": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_PackageTagId"],
+             @"meta_PackageChannelID": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_PackageChannelID"],
+             @"meta_PackageTitle": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_PackageTitle"],
+             @"meta_PackageLogo": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_PackageLogo"],
+             @"meta_PackageId": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_PackageId"],
+             @"meta_PackageHomePageID": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_PackageHomePageID"],
+             @"meta_Weibo_APPID": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_Weibo_APPID"],
+             @"meta_Weibo_APPSECRET": [[[NSBundle mainBundle] infoDictionary] valueForKey:@"meta_Weibo_APPSECRET"],
              };
 }
 
